@@ -30,20 +30,6 @@ void trim(char * str)
   }
 }
 
-int cases(char * a)
-// 0:lowercase 1:Capital
-{
-  char  found_lower = false, found_upper = false  ;
-  for (int i = 0; str[i] != '\0'; i++)
-  {
-    found_upper = found_upper || (str[i] >= 65 && str[i] <= 90);
-    if (found_upper)
-    {
-      return 1;
-    }
-  }
-  return 0;
-}
 
 int present(struct node *head, char * val)
 {
@@ -64,63 +50,77 @@ int present(struct node *head, char * val)
 }
 
 
-struct node * insert(struct node *front,char * word)
+int insert(struct node *front,char * word)
 {
+  
   struct node *prev = NULL;
   struct node *ptr = front;
-  int case_1= cases(word);
-
+  int len1 = strlen(word);
+  int len2 = strlen(ptr->str);
+  int max; //// 1:ptr 2:word
   while(ptr!=NULL)
   {
-    // 1.duplicate
   if(present(ptr,word))
   {
     struct node *new = malloc(sizeof(struct node));
     new->str = word;
     new->next = ptr->next;
     ptr->next = new;
-    return front;
+    return 0;
+    //return front;
   }
-    // 2.Capital and lowercase
-    // 2-1. when front is lowercase but word is Capital case
-  int case_2= cases(ptr.str);
-  if(case_1>case_2 && ptr==front)
+  int br=1;
+    // 2.Comparasion
+  while(*word!=NULL || *ptr->str!=NULL)
   {
-    struct node *new = malloc(sizeof(struct node));
-    new->str = word;
-    new->next = ptr;
-    return new;
-  }
-    // 2-2. when the inserted word is Capital case as the front, and bigger than ptr
-  else if(case_1>case_2)
-  {
-    struct node *new = malloc(sizeof(struct node));
-    new->str = word;
-    new->next = prev->next;
-    prev->next = new;
-    return front;
-  }
-    // 3. normal condition
-    // case_1 stands for the input word
-    // case_2 stands for the current node
-  else if(case_1 == 1 %% case_1== case_2)
-  {
-    int i=0;
-    for(i;i<)
-  }
-  else
-  {
-
+    max = 0;
+    if( *word == *ptr->str)
+    {
+      *word++;
+      *ptr->str++;
+      continue;
+    }
+    else
+    {
+      // both characters are Capital case
+      // 1:ptr 2:word
+      // int len1 = strlen(word);
+      // int len2 = strlen(front->word);
+      if((*word >= 65 && *word <= 90)&&(*ptr->str >= 65 && *ptr->str <= 90))
       {
-
+        *word<(*ptr->str)?max=1:(max=2);
+        br=0;
+        break;
       }
+      // one of the character is Capital case
+      else if((*word >= 65 && *word <= 90)||(*ptr->str >= 65 && *ptr->str <= 90))
+      {
+        *word<(*ptr->str)?max=1:(max=2);
+        br=0;
+        break;
+      }
+      else
+      {
+        *word<(*ptr->str)?max=2:(max=1);
+        br=0;
+        break;
+      }
+    }
   }
 
-  int index=0;
-
-  prev = ptr;
-  ptr = ptr.next;
+  if(max==0)
+  {
+    if(len1>len2)
+      return 2;
+    else
+      return 1;
   }
+  else if(br==0)
+  {
+    return max;
+  }
+
+}
 }
 
 int main(int argc, char ** argv)
@@ -140,6 +140,7 @@ int main(int argc, char ** argv)
   struct node *front;
   while(pch != NULL)
     {
+      printf ("%s\n",pch);
       if(front== NULL)
       {
         front = malloc(sizeof(struct node));
@@ -149,8 +150,9 @@ int main(int argc, char ** argv)
       else
       {
         insert(front,pch);
+        printf("true\n");
       }
-      printf ("%s\n",pch);
+    //  printf ("%s\n",pch);
       pch = strtok(NULL, " ");
     }
 

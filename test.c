@@ -1,24 +1,40 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+struct node {
+    char * str;
+    struct node *next;
+};
 
-int main () {
-   char str1[15];
-   char str2[15];
-   int ret;
+struct node *  uu(int i) {
+   char * a = "ABC";
+   char * b = "ABC";
+   int max;
+   struct node * front = malloc(sizeof(struct node));
+   struct node * ptr = front;
+   char * c = "ABC";
+   front ->next = NULL;
+   struct node * new = malloc(sizeof(struct node));
+   new->str = "BCD";
+   new->next = NULL;
+   ptr -> next = new;
+   return front;
+  // while(*c!=NULL)
+   //{
+     //printf("%c\n",*c );
+     //*c++;
+   //}
+  // a==b?max=1:(max=2);
+   //printf("%d\n",max );
 
+}
+int main()
+{
 
-   strcpy(str1, "borp");
-   strcpy(str2, "butter");
-
-   ret = strcmp(str1, str2);
-
-   if(ret < 0) {
-      printf("str1 is less than str2\n");
-   } else if(ret > 0) {
-      printf("str1 is bigger than str2\n");
-   } else {
-      printf("str1 is equal to str2\n");
-   }
-
-   return(0);
+  struct node * c = uu(0);
+  while(c!=NULL)
+  {
+    printf("%s\n",c->str);
+  }
+  return 1;
 }
