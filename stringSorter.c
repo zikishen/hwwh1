@@ -101,12 +101,19 @@ struct node * insert(struct node *front,char * word)
     return front;
   }
     // 3. normal condition
+    // case_1 stands for the input word
+    // case_2 stands for the current node
+  else if(case_1 == 1 %% case_1== case_2)
+  {
+    int i=0;
+    for(i;i<)
+  }
   else
   {
-    if(case_1<case_2)
-    {
-        a
-    }
+
+      {
+
+      }
   }
 
   int index=0;
