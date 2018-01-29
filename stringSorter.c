@@ -1,131 +1,174 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "helper.h"
 
-struct node {
-    char * str;
-    struct node *next;
-};
-
-void trim(char * str)
+void trim(char * str);
+void printList(struct node *head);
 // trimming whitespace and non-alphabetical letter
+struct node * insert(struct node *front,char * word)
 {
-  int index,i;
-  index = 0;
-  while(index<strlen(str))
-    {
-      if(str[index]<65)
-      {
-        str[index]=' ';
-      }
-      else if(str[index]>90&&str[index]<97)
-      {
-        str[index]=' ';
-      }
-      else if(str[index]>122)
-      {
-        str[index]=' ';
-      }
-        index++;
-  }
-}
-
-
-int present(struct node *head, char * val)
-{
-    if(head == NULL)
-    {
-        return 0;
-    }
-    struct node *tmp = head;
-    while(tmp !=NULL)
-    {
-        if(strcmp(tmp->str,val)==0)
-        {
-            return 1;
-        }
-        tmp = tmp->next;
-    }
-    return 0;
-}
-
-
-int insert(struct node *front,char * word)
-{
-  
-  struct node *prev = NULL;
+  struct node *prev = front;
   struct node *ptr = front;
+  int max = 0;
   int len1 = strlen(word);
   int len2 = strlen(ptr->str);
-  int max; //// 1:ptr 2:word
+ //// 1:word 2:ptr
   while(ptr!=NULL)
   {
-  if(present(ptr,word))
+  /*if(present(ptr,word))
   {
     struct node *new = malloc(sizeof(struct node));
     new->str = word;
     new->next = ptr->next;
     ptr->next = new;
-    return 0;
+    return front;
     //return front;
   }
-  int br=1;
-    // 2.Comparasion
-  while(*word!=NULL || *ptr->str!=NULL)
+  */
+      // Comparasion
+    int word_bigger=0;
+    // word_bigger is a flag to show that when word is bigger than ptr, ptr should move to the next node
+    int i=0;
+    char * ptr_str = ptr->str;
+    while(i<=len1&&i<=len2)
+    //while(*word!=NULL && *ptr->str!=NULL)
   {
-    max = 0;
-    if( *word == *ptr->str)
+    //printf("*word is %c\n",word[i]);
+    //printf("ptr_str is %c\n",ptr_str[i]);
+    if( word[i] == ptr_str[i])
     {
-      *word++;
-      *ptr->str++;
+      i++;
+    //printf("*word is %c\n",word[i]);
+    //printf("ptr_str is %c\n",ptr_str[i]);
       continue;
     }
     else
     {
-      // both characters are Capital case
+      /* 1. both characters are lowercase or Capital case
       // 1:ptr 2:word
       // int len1 = strlen(word);
-      // int len2 = strlen(front->word);
-      if((*word >= 65 && *word <= 90)&&(*ptr->str >= 65 && *ptr->str <= 90))
+      */ int len2 = strlen(ptr->str);
+      if(((word[i] >= 65 && word[i] <= 90)&&(ptr_str[i] >= 65 && ptr_str[i] <= 90))
+      ||(((word[i] >= 97 && word[i] <= 122)&&(ptr_str[i] >= 97 && ptr_str[i] <= 122))))
       {
-        *word<(*ptr->str)?max=1:(max=2);
-        br=0;
-        break;
-      }
-      // one of the character is Capital case
-      else if((*word >= 65 && *word <= 90)||(*ptr->str >= 65 && *ptr->str <= 90))
-      {
-        *word<(*ptr->str)?max=1:(max=2);
-        br=0;
-        break;
-      }
+        word[i]<(ptr_str[i])?max=2:(max=1);
+        if(max==1)
+        {
+          //printf("%s %d's index: %c is bigger\n",word,i,word[i]);
+          int word_bigger=1;
+          break;
+        }
       else
+        {
+          //printf("%s %d's index: %c is bigger\n",ptr_str,i,ptr_str[i]);
+
+          if(ptr==front)
+            {
+              struct node * new = malloc(sizeof(struct node));
+              new->str = word;
+              new->next = ptr;
+              //printf("new->str is %s\n", word);
+              //printf("new->str is %s\n", ptr_str);
+              return new;
+            }
+            else
+            {
+              struct node * new = malloc(sizeof(struct node));
+              new->str = word;
+              new->next = prev->next;
+              prev->next = new;
+              return front;
+            }
+
+          }
+        }
+      // 2. one of the character is Capital case and the other is lowercase
+      else if(((word[i] >= 65 &&word[i] <= 90)||(ptr_str[i] >= 97 && ptr_str[i] <= 122))
+      ||((word[i] >= 97 &&word[i] <= 122)||(ptr_str[i] >= 65 && ptr_str[i] <= 90)))
       {
-        *word<(*ptr->str)?max=2:(max=1);
-        br=0;
-        break;
+        word[i]<(ptr_str[i])?max=1:(max=2);
+        if(max==2)
+        {
+          //printf("1 %s %d's index: %c is bigger\n",ptr_str,i,ptr_str[i]);
+          int word_bigger=1;
+          break;
+        }
+        else
+        {
+          //printf("2 %s %d's index: %c is bigger\n",word,i,word[i]);
+          if(ptr==front)
+            {
+              struct node * new = malloc(sizeof(struct node));
+              new->str = word;
+              new->next = ptr;
+              //printf("new->str is %s\n", word);
+              //printf("new->str is %s\n", ptr_str);
+              return new;
+            }
+            else
+            {
+              struct node * new = malloc(sizeof(struct node));
+              new->str = word;
+              new->next = prev->next;
+              prev->next = new;
+              return front;
+            }
+        }
       }
     }
+    i++;
   }
 
+  if(word_bigger==1)
+  {
+    prev = ptr;
+    ptr = ptr->next;
+    i++;
+    continue;
+  }
   if(max==0)
   {
     if(len1>len2)
-      return 2;
-    else
-      return 1;
+    {
+      if(ptr==front)
+      {
+        struct node * new = malloc(sizeof(struct node));
+        new->str = word;
+        new->next = ptr;
+        printf("new->str is %s\n", word);
+        printf("new->str is %s\n", ptr_str);
+        return new;
+      }
+      else
+      {
+        struct node * new = malloc(sizeof(struct node));
+        new->str = word;
+        new->next = prev->next;
+        prev->next = new;
+        return front;
+      }
+    }
+      else
+      {
+        prev = ptr;
+        ptr = ptr->next;
+        i++;
+        continue;
+      }
+    }
+  prev = ptr;
+  ptr = ptr->next;
+  i++;
   }
-  else if(br==0)
-  {
-    return max;
-  }
+    // when we should place the word in the last place, "Hello there"
+    struct node * new = malloc(sizeof(struct node));
+    new->str = word;
+    new->next = NULL;
+    prev->next = new;
+    return front;
+}
 
-}
-}
 
 int main(int argc, char ** argv)
 {
-  //printf("argc is %d\n",argc);
   if(argc!=2)
     {
       printf("Error\n");
@@ -137,10 +180,9 @@ int main(int argc, char ** argv)
   trim(input);
   char *pch;
   pch = strtok (input," ");
-  struct node *front;
+  struct node *front = NULL;
   while(pch != NULL)
     {
-      printf ("%s\n",pch);
       if(front== NULL)
       {
         front = malloc(sizeof(struct node));
@@ -149,13 +191,11 @@ int main(int argc, char ** argv)
       }
       else
       {
-        insert(front,pch);
-        printf("true\n");
+        printf ("insert: %s\n",pch);
+        front = insert(front,pch);
       }
-    //  printf ("%s\n",pch);
       pch = strtok(NULL, " ");
     }
-
-
-  return 0;
+    printList(front);
+    return 0;
 }
