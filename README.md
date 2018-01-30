@@ -1,0 +1,2 @@
+# 
+        Our program is written based on Trimming and Sorting. In the trim method, we turn all non-alphabetical letters into white space. After that, we use link list to store and sort words from the input strings. While we insert each word into the link list, we compare the inserted word with those nodes that have been placed in the link list. If the word is bigger than the str that carried by the node in the link list, we move the pointer to the next node. Otherwise, we insert the word in front of the pointer, which is smaller than the current pointer.
