@@ -2,7 +2,7 @@ CS214 ASS0
 
 Group member:
 Ziqi Shen(zs216)
-
+Mohaymen Ahmed(ma1097)
 
 Our program is written based on a Trimming function, Inserting function, printList function, and freeList funciton. Our data structure of choise is the Single Linked List. Each Node in our Linked list has a string variable which is an array of chars. Each node also has a reference to either NULL or an existing node. 
 
