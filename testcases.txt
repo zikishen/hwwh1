@@ -2,24 +2,36 @@ Testcase1:
 ./a.out
 
 Expected Output1:
-You have not entered exactly 2 arguments
+Error due to no input argument
+
+Output1:
+Error
 
 Testcase 2:
 ./a.out "hi there" "my friend"
 
 Expected Output2:
-You have not entered exactly 2 arguments
+Error due to more than one argument
+
+Output2:
+Error
 
 Testcase3:
 ./a.out ""
 
 Expected Output3 (Nothing is printed):
+(Nothing)
 
+Output3:(nothing)
 
 Testcase4:
 ./a.out "1893183"
 
 Expected Output4 (Nothing is printed):
+Nothing
+
+Output4:
+(Nothing)
 
 Testcase5:
 ./a.out "A B C D a b c d"
@@ -34,8 +46,18 @@ b
 c
 d
 
+Output5:
+A
+B
+C
+D
+a
+b
+c
+d
+
 Testcase6:
-./a.out "a aa aaa aaaa aaaa "
+./a.out "a aa aaa aaaa aaaaa"
 
 Expected Output6:
 a
@@ -44,10 +66,24 @@ aaa
 aaaa
 aaaaa
 
+Output6:
+a
+aa
+aaa
+aaaa
+aaaaa
+
 Testcase7:
-./a.out "a ap app app apple"
+./a.out "a ap app appl apple"
 
 Expected Output7:
+a
+ap
+app
+appl
+apple
+
+Output7:
 a
 ap
 app
@@ -61,16 +97,23 @@ Expected Output8:
 WXYZ
 wxyz
 
+Output8:
+WXYZ
+wxyz
+
 Testcase9:
 ./a.out "a 1234567890~+=}{|\':;?/.>,<"
 
 Expected Output 9:
 a
 
-Testcase10:
+Output 9:
+a
+
+Testcase 10:
 ./stringsorter "abc Def ghi Klm AAB dFF Ghh"
 
-Expected Output10:
+Expected Output 10:
 AAB
 Def
 Ghh
@@ -79,10 +122,19 @@ abc
 dFF
 ghi
 
-Testcase11:
+Output 10:
+AAB
+Def
+Ghh
+Klm
+abc
+dFF
+ghi
+
+Testcase 11:
 ./stringsorter "Abc Def GHi Klm AAB DFF Ghh"
 
-Expected Output11:
+Expected Output 11:
 AAB
 Abc
 DFF
@@ -91,10 +143,19 @@ GHi
 Ghh
 Klm
 
-Testcase12:
+Output 11:
+AAB
+Abc
+DFF
+Def
+GHi
+Ghh
+Klm
+
+Testcase 12:
 ./stringsorter "AAgd AagC AaG aAgeeeeee  aag  AAAa AAGc Aga AAA"
 
-Expected Output12:
+Expected Output 12:
 AAA
 AAAa
 AAGc
@@ -105,45 +166,86 @@ Aga
 aAgeeeeee
 aag
 
-Testcase13:
+Output 12:
+AAA
+AAAa
+AAGc
+AAgd
+AaG
+AagC
+Aga
+aAgeeeeee
+aag
+
+Testcase 13:
 ./stringsorter "hello10293810293out*0192^there10091"
 
-Expected Output13:
+Expected Output 13:
 hello
 out
 there
 
-Testcase14:
+Output 13:
+hello
+out
+there
+
+Testcase 14:
 ./stringsorter "thing stuff otherstuff blarp"
 
-Expected Output14:
+Expected Output 14:
 blarp
 otherstuff
 stuff
 thing
 
-Testcase15:
+Output 14:
+blarp
+otherstuff
+stuff
+thing
+
+Testcase 15:
 ./stringsorter "thing1stuff3otherstuff,blarp"
 
-Expected Output15:
+Expected Output 15:
 blarp
 otherstuff
 stuff
 thing
 
-Testcase16:
+Output 15:
+blarp
+otherstuff
+stuff
+thing
+
+Testcase 16:
 ./stringsorter "Zam borp nUtter butter"
 
-Expected Output16:
+Expected Output 16:
 Zam
 borp
 butter
 nUtter
 
-Testcase17:
+Output 16:
+Zam
+borp
+butter
+nUtter
+
+Testcase 17:
 ./stringsorter "Z aaaaaaaaaa b ccccccc Dd"
 
-Expected Output17:
+Expected Output 17:
+Dd
+Z
+aaaaaaaaaa
+b
+ccccccc
+
+Output 17:
 Dd
 Z
 aaaaaaaaaa
@@ -154,3 +256,7 @@ Testcase18:
 ./stringsorter "1234567890{}_+<>?"
 
 ExpectedOutput18 (Should print nothing):
+(nothing)
+
+Output 18:
+(nothing)
