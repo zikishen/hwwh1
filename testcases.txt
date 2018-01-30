@@ -1,0 +1,156 @@
+Testcase1:
+./a.out
+
+Expected Output1:
+You have not entered exactly 2 arguments
+
+Testcase 2:
+./a.out "hi there" "my friend"
+
+Expected Output2:
+You have not entered exactly 2 arguments
+
+Testcase3:
+./a.out ""
+
+Expected Output3 (Nothing is printed):
+
+
+Testcase4:
+./a.out "1893183"
+
+Expected Output4 (Nothing is printed):
+
+Testcase5:
+./a.out "A B C D a b c d"
+
+Expected Output5:
+A
+B
+C
+D
+a
+b
+c
+d
+
+Testcase6:
+./a.out "a aa aaa aaaa aaaa "
+
+Expected Output6:
+a
+aa
+aaa
+aaaa
+aaaaa
+
+Testcase7:
+./a.out "a ap app app apple"
+
+Expected Output7:
+a
+ap
+app
+appl
+apple
+
+Testcase8:
+./a.out "WXYZ wxyz"
+
+Expected Output8:
+WXYZ
+wxyz
+
+Testcase9:
+./a.out "a 1234567890~+=}{|\':;?/.>,<"
+
+Expected Output 9:
+a
+
+Testcase10:
+./stringsorter "abc Def ghi Klm AAB dFF Ghh"
+
+Expected Output10:
+AAB
+Def
+Ghh
+Klm
+abc
+dFF
+ghi
+
+Testcase11:
+./stringsorter "Abc Def GHi Klm AAB DFF Ghh"
+
+Expected Output11:
+AAB
+Abc
+DFF
+Def
+GHi
+Ghh
+Klm
+
+Testcase12:
+./stringsorter "AAgd AagC AaG aAgeeeeee  aag  AAAa AAGc Aga AAA"
+
+Expected Output12:
+AAA
+AAAa
+AAGc
+AAgd
+AaG
+AagC
+Aga
+aAgeeeeee
+aag
+
+Testcase13:
+./stringsorter "hello10293810293out*0192^there10091"
+
+Expected Output13:
+hello
+out
+there
+
+Testcase14:
+./stringsorter "thing stuff otherstuff blarp"
+
+Expected Output14:
+blarp
+otherstuff
+stuff
+thing
+
+Testcase15:
+./stringsorter "thing1stuff3otherstuff,blarp"
+
+Expected Output15:
+blarp
+otherstuff
+stuff
+thing
+
+Testcase16:
+./stringsorter "Zam borp nUtter butter"
+
+Expected Output16:
+Zam
+borp
+butter
+nUtter
+
+Testcase17:
+./stringsorter "Z aaaaaaaaaa b ccccccc Dd"
+
+Expected Output17:
+Dd
+Z
+aaaaaaaaaa
+b
+ccccccc
+
+Testcase18:
+./stringsorter "1234567890{}_+<>?"
+
+ExpectedOutput18 (Should print nothing):
